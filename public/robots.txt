@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://divi-plan.web.app/sitemap.xml
