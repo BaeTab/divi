@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { PlusCircle, RotateCcw } from 'lucide-react';
+import { logEvent } from 'firebase/analytics';
+import { analytics } from '../firebase';
 
 const PRESETS = [
     { label: '1, 4, 7, 10월 (분기 A)', months: [1, 4, 7, 10] },
@@ -40,6 +42,14 @@ export default function AddStockForm({ onAdd }) {
             amountPerShare: Number(amountPerShare),
             months: selectedMonths
         });
+
+        // Log Analytics Event
+        if (analytics) {
+            logEvent(analytics, 'add_stock', {
+                stock_name: name,
+                preset_used: selectedMonths.length === 12 ? 'monthly' : 'custom'
+            });
+        }
 
         // Reset
         setName('');
@@ -123,8 +133,8 @@ export default function AddStockForm({ onAdd }) {
                                     type="button"
                                     onClick={() => toggleMonth(month)}
                                     className={`py-2 rounded-lg text-sm font-bold transition-all ${isSelected
-                                            ? 'bg-emerald-600 text-white shadow-md transform scale-105'
-                                            : 'bg-gray-50 text-gray-400 hover:bg-gray-100'
+                                        ? 'bg-emerald-600 text-white shadow-md transform scale-105'
+                                        : 'bg-gray-50 text-gray-400 hover:bg-gray-100'
                                         }`}
                                 >
                                     {month}월
