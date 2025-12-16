@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { Plus, LayoutDashboard, Wallet, Menu, X } from 'lucide-react'
 import AddStockForm from './components/AddStockForm'
+import AdWall from './components/AdWall'
 import StockList from './components/StockList'
 import Dashboard from './components/Dashboard'
 import Footer from './components/Footer'
@@ -28,6 +29,14 @@ function MainApp() {
 
   const [analysis, setAnalysis] = useState(() => calculateDividends(stocks));
   const [isStarted, setIsStarted] = useState(false);
+  const [hasClickedAd, setHasClickedAd] = useState(() => {
+    return sessionStorage.getItem('dividend_ad_clicked') === 'true';
+  });
+
+  const handleAdClick = () => {
+    setHasClickedAd(true);
+    sessionStorage.setItem('dividend_ad_clicked', 'true');
+  };
 
   useEffect(() => {
     localStorage.setItem('dividend_stocks', JSON.stringify(stocks));
@@ -69,7 +78,11 @@ function MainApp() {
           <LayoutDashboard className="w-5 h-5 text-emerald-600" />
           <h2 className="text-xl font-bold text-slate-800">대시보드</h2>
         </div>
-        <Dashboard analysis={analysis} />
+        {hasClickedAd ? (
+          <Dashboard analysis={analysis} />
+        ) : (
+          <AdWall onAdClick={handleAdClick} />
+        )}
       </section>
 
       {/* Management Section */}
