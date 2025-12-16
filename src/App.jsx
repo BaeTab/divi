@@ -13,6 +13,8 @@ import Terms from './pages/Terms'
 import FAQ from './pages/FAQ'
 import { calculateDividends } from './utils/calculate'
 
+import LandingPage from './components/LandingPage'
+
 function MainApp() {
   const [stocks, setStocks] = useState(() => {
     try {
@@ -25,6 +27,7 @@ function MainApp() {
   });
 
   const [analysis, setAnalysis] = useState(() => calculateDividends(stocks));
+  const [isStarted, setIsStarted] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('dividend_stocks', JSON.stringify(stocks));
@@ -41,10 +44,23 @@ function MainApp() {
     }
   };
 
+  // Show Landing Page if no data and user hasn't clicked start
+  if (stocks.length === 0 && !isStarted) {
+    return (
+      <>
+        <SEO
+          title="Dividend Planner - 배당금 월급 계산기"
+          description="나만의 배당 포트폴리오를 만들고 매달 들어오는 예상 배당금을 확인하세요. 복잡한 엑셀 없이 간편하게 관리할 수 있습니다."
+        />
+        <LandingPage onStart={() => setIsStarted(true)} />
+      </>
+    );
+  }
+
   return (
     <div className="space-y-12">
       <SEO
-        title="홈"
+        title="대시보드"
         description="나만의 배당금 월급 달력. 매달 들어오는 배당금을 관리하고 목표 달성률을 확인하세요."
       />
       {/* Dashboard Section */}
