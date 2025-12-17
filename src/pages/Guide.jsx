@@ -1,6 +1,7 @@
 import React from 'react';
 import { BookOpen, TrendingUp, DollarSign, CalendarCheck } from 'lucide-react';
 import SEO from '../components/SEO';
+import KakaoAdFit from '../components/KakaoAdFit';
 
 export default function Guide() {
     return (
@@ -116,10 +117,8 @@ export default function Guide() {
                     </div>
                 </section>
 
-                {/* AdSense Placeholder (In-article) */}
-                <div className="bg-gray-100 w-full h-32 flex items-center justify-center text-gray-400 rounded-lg">
-                    광고 영역 (콘텐츠 중간)
-                </div>
+                {/* Kakao AdFit (In-article) */}
+                <KakaoAdFit />
             </div>
         </div>
     );
