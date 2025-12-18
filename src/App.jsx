@@ -12,6 +12,8 @@ import Guide from './pages/Guide'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import FAQ from './pages/FAQ'
+import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 import { calculateDividends } from './utils/calculate'
 
 import LandingPage from './components/LandingPage'
@@ -37,6 +39,17 @@ function MainApp() {
     setHasClickedAd(true);
     sessionStorage.setItem('dividend_ad_clicked', 'true');
   };
+
+  const [goal, setGoal] = useState(() => {
+    const savedGoal = localStorage.getItem('monthly_goal');
+    return savedGoal ? Number(savedGoal) : 1000000;
+  });
+
+  const handleGoalChange = (newGoal) => {
+    setGoal(newGoal);
+    localStorage.setItem('monthly_goal', newGoal);
+  };
+
 
   useEffect(() => {
     localStorage.setItem('dividend_stocks', JSON.stringify(stocks));
@@ -79,7 +92,7 @@ function MainApp() {
           <h2 className="text-xl font-bold text-slate-800">대시보드</h2>
         </div>
         {hasClickedAd ? (
-          <Dashboard analysis={analysis} />
+          <Dashboard analysis={analysis} goal={goal} onGoalChange={handleGoalChange} />
         ) : (
           <AdWall onAdClick={handleAdClick} />
         )}
@@ -130,6 +143,7 @@ function App() {
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
               <Link to="/" className="hover:text-emerald-600 transition">홈</Link>
+              <Link to="/blog" className="hover:text-emerald-600 transition">블로그</Link>
               <Link to="/guide" className="hover:text-emerald-600 transition">가이드</Link>
               <Link to="/faq" className="hover:text-emerald-600 transition">FAQ</Link>
             </nav>
@@ -145,6 +159,7 @@ function App() {
             <div className="md:hidden bg-white border-t border-slate-100 p-4 shadow-lg absolute w-full left-0 z-40">
               <nav className="flex flex-col gap-4 text-sm font-medium text-slate-600">
                 <Link to="/" className="block py-2 hover:text-emerald-600" onClick={() => setIsMenuOpen(false)}>홈</Link>
+                <Link to="/blog" className="block py-2 hover:text-emerald-600" onClick={() => setIsMenuOpen(false)}>블로그</Link>
                 <Link to="/guide" className="block py-2 hover:text-emerald-600" onClick={() => setIsMenuOpen(false)}>가이드</Link>
                 <Link to="/faq" className="block py-2 hover:text-emerald-600" onClick={() => setIsMenuOpen(false)}>FAQ</Link>
               </nav>
@@ -156,6 +171,8 @@ function App() {
         <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex-grow w-full">
           <Routes>
             <Route path="/" element={<MainApp />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/guide" element={<Guide />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
