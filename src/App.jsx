@@ -31,13 +31,12 @@ function MainApp() {
 
   const [analysis, setAnalysis] = useState(() => calculateDividends(stocks));
   const [isStarted, setIsStarted] = useState(false);
-  const [hasClickedAd, setHasClickedAd] = useState(() => {
-    return sessionStorage.getItem('dividend_ad_clicked') === 'true';
-  });
+  // Reset every time the page loads
+  const [hasClickedAd, setHasClickedAd] = useState(false);
 
   const handleAdClick = () => {
     setHasClickedAd(true);
-    sessionStorage.setItem('dividend_ad_clicked', 'true');
+    // Removed sessionStorage persistence to require click on revisit
   };
 
   const [goal, setGoal] = useState(() => {
