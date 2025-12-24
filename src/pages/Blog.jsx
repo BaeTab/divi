@@ -10,6 +10,7 @@ export default function Blog() {
             <SEO
                 title="블로그"
                 description="배당주 투자의 기초부터 심화 전략까지, 현명한 투자자가 되기 위한 금융 지식을 나눕니다."
+                url="/blog"
             />
 
             <div className="text-center space-y-4 py-8">

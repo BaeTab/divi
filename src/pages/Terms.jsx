@@ -4,7 +4,7 @@ import SEO from '../components/SEO';
 export default function Terms() {
     return (
         <div className="max-w-4xl mx-auto px-4 py-12 animate-fade-in text-gray-700">
-            <SEO title="이용약관" description="Dividend Planner 이용약관입니다." />
+            <SEO title="이용약관" description="Dividend Planner 이용약관입니다." url="/terms" />
             <h1 className="text-3xl font-bold text-gray-900 mb-8">이용약관 (Terms of Service)</h1>
 
             <div className="space-y-6 text-sm leading-relaxed">

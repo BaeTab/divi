@@ -10,6 +10,7 @@ export default function Guide() {
                 title="배당주 투자 가이드"
                 description="배당주 투자란 무엇인가? 배당락일, 지급일 등 필수 용어와 월 배당 포트폴리오 만드는 법을 알려드립니다."
                 keywords="배당주, 투자가이드, 배당락일, 월배당, 포트폴리오, 주식공부"
+                url="/guide"
             />
             <div className="text-center mb-16">
                 <h1 className="text-4xl font-extrabold text-gray-900 mb-4">배당주 투자 가이드 (Dividend Investing 101)</h1>

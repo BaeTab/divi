@@ -4,7 +4,7 @@ import SEO from '../components/SEO';
 export default function Privacy() {
     return (
         <div className="max-w-4xl mx-auto px-4 py-12 animate-fade-in text-gray-700">
-            <SEO title="개인정보처리방침" description="Dividend Planner의 개인정보 처리방침입니다." />
+            <SEO title="개인정보처리방침" description="Dividend Planner의 개인정보 처리방침입니다." url="/privacy" />
             <h1 className="text-3xl font-bold text-gray-900 mb-8">개인정보처리방침 (Privacy Policy)</h1>
 
             <div className="space-y-6 text-sm leading-relaxed">

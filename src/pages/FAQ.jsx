@@ -37,6 +37,7 @@ export default function FAQ() {
             <SEO
                 title="자주 묻는 질문"
                 description="서비스 이용에 관한 궁금한 점을 해결해드립니다. 데이터 저장 방식, 배당 프리셋 등."
+                url="/faq"
             />
             <div className="text-center mb-12">
                 <h1 className="text-3xl font-bold text-gray-900 mb-4">자주 묻는 질문 (FAQ)</h1>

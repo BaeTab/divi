@@ -22,6 +22,10 @@ export default function BlogPost() {
             <SEO
                 title={post.title}
                 description={post.excerpt}
+                url={`/blog/${post.slug}`}
+                type="article"
+                author={post.author}
+                publishedTime={post.date}
             />
 
             {/* Header */}
